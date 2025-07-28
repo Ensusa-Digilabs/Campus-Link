@@ -3,16 +3,19 @@ html, body, #root {
   margin: 0;
   padding: 0;
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
-  background: #f5f6fa;
-  color: #0f1115;
+  background: #f5f6fa; /* Light background */
+  color: #0f1115;       /* Dark text */
 }
 
-body.dark {
-  background: #0f1115;
-  color: #eef2ff;
-}
-
+/* Remove dark mode styles */
 img {
   max-width: 100%;
   display: block;
+}
+a {
+  color: #007bff; /* Link color */
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }

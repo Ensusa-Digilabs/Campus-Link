@@ -39,7 +39,6 @@ const initialPosts = [
 export default function Home() {
   const [posts, setPosts] = useState(initialPosts);
   const [text, setText] = useState("");
-  const [imageURL, setImageURL] = useState("");
 
   function addPost(e) {
     e.preventDefault();
@@ -49,12 +48,11 @@ export default function Home() {
         id: Date.now(),
         author: "You",
         content: text.trim(),
-        image: imageURL.trim() || null,
+        image: null,
       },
       ...p,
     ]);
     setText("");
-    setImageURL("");
   }
 
   return (
@@ -68,7 +66,7 @@ export default function Home() {
           value={text}
           onChange={(e) => setText(e.target.value)}
           style={{
-            width: "100%",
+            width: "98%",
             padding: "10px",
             borderRadius: "12px",
             border: "1px solid rgba(255,255,255,0.12)",
@@ -77,20 +75,35 @@ export default function Home() {
             fontSize: "0.9rem",
           }}
         />
-        <input
-          type="text"
-          placeholder="Image URL (optional)"
-          value={imageURL}
-          onChange={(e) => setImageURL(e.target.value)}
-          style={{
-            width: "100%",
-            padding: "8px",
-            borderRadius: "12px",
-            border: "1px solid rgba(255,255,255,0.12)",
-            marginBottom: 12,
-            fontSize: "0.9rem",
-          }}
-        />
+
+        {/* Attachment buttons */}
+        <div style={{ display: "flex", gap: "10px", marginBottom: 12 }}>
+          <button
+            type="button"
+            className="btn btn--ghost"
+            aria-label="Add Image"
+            style={{ padding: "6px 12px" }}
+          >
+            📷 Image
+          </button>
+          <button
+            type="button"
+            className="btn btn--ghost"
+            aria-label="Add Document"
+            style={{ padding: "6px 12px" }}
+          >
+            📄 Document
+          </button>
+          <button
+            type="button"
+            className="btn btn--ghost"
+            aria-label="Add Video"
+            style={{ padding: "6px 12px" }}
+          >
+            🎥 Video
+          </button>
+        </div>
+
         <button
           type="submit"
           className="btn btn--primary"

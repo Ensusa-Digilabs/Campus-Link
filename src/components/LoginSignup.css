@@ -1,91 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Billabong&display=swap');
+
 .login-container {
   height: 100vh;
   display: flex;
-  justify-content: center; /* centers horizontally */
-  align-items: center;     /* centers vertically */
-  background: #f0f2f8; /* light background for light mode */
+  flex-direction: column;
+  justify-content: center; /* vertically center */
+  align-items: center; /* horizontally center */
+  background: #f0f2f8; /* light background */
   padding: 20px;
+  color: #000;
 }
 
-body.dark .login-container {
-  background: #1a1a1a; /* dark background in dark mode */
+.login-logo {
+  font-family: 'Billabong', cursive;
+  font-size: 4rem;
+  margin-bottom: 24px;
+  user-select: none;
+  text-align: center;
+}
+
+.login-logo .campus {
+  color: #7f5af0; /* purple */
+}
+
+.login-logo .link {
+  color: #ff6f91; /* pinkish */
 }
 
 .login-form {
-  background: rgba(255, 255, 255, 0.1); /* slightly translucent white */
-  padding: 32px 24px;
-  border-radius: 16px;
-  width: 320px;
+  background: #fff;
+  padding: 36px 32px;
+  border-radius: 20px;
+  width: 340px;
+  box-shadow: 0 8px 24px rgba(127, 90, 240, 0.15);
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  box-shadow: 0 6px 24px rgba(127, 90, 240, 0.2);
-  backdrop-filter: blur(10px);
-  transition: background-color 0.3s ease;
-}
-
-body.dark .login-form {
-  background: rgba(0, 0, 0, 0.4);
-  box-shadow: 0 6px 24px rgba(127, 90, 240, 0.6);
+  gap: 18px;
 }
 
 .login-form h2 {
   text-align: center;
   margin-bottom: 12px;
   color: #222;
-}
-
-body.dark .login-form h2 {
-  color: #fff;
+  font-weight: 700;
+  font-size: 1.6rem;
 }
 
 .login-input {
-  padding: 12px 16px;
+  padding: 14px 16px;
   border-radius: 12px;
-  border: none;
+  border: 1.5px solid #ddd;
   font-size: 1rem;
   outline: none;
-
-  /* Glassy pop-out effect for light mode */
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 8px 24px rgba(127, 90, 240, 0.1);
-  color: #000; /* black text */
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-body.dark .login-input {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  box-shadow: none;
+  color: #222;
+  transition: border-color 0.3s ease;
 }
 
 .login-input::placeholder {
-  color: #555;
+  color: #aaa;
 }
 
-body.dark .login-input::placeholder {
-  color: #bbb;
-}
-
-/* On focus, increase glow */
 .login-input:focus {
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 40px rgba(127, 90, 240, 0.3);
-}
-
-body.dark .login-input:focus {
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 8px rgba(127, 90, 240, 0.8);
+  border-color: #7f5af0;
+  box-shadow: 0 0 8px rgba(127, 90, 240, 0.3);
 }
 
 .btn--primary {
   background-color: #7f5af0;
-  color: #000; /* black button text */
-  font-weight: 600;
-  padding: 12px;
-  border-radius: 12px;
+  color: #fff;
+  font-weight: 700;
+  padding: 14px;
+  border-radius: 16px;
   cursor: pointer;
   border: none;
+  font-size: 1rem;
   transition: background-color 0.3s ease;
 }
 

@@ -11,15 +11,19 @@
   flex-direction: column;
   gap: 18px;
   backdrop-filter: blur(14px);
-  border-right: 1px solid rgba(255,255,255,0.06);
+  background: #ffffff; /* Light background for sidebar */
+  border-right: 1px solid rgba(0,0,0,0.06); /* Subtle border */
 }
 
 .brand {
   font-weight: 900;
   font-size: 1.4rem;
   margin-bottom: 8px;
-  color: #000;
+  color: #000; /* Dark text */
   letter-spacing: .4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .side-links {
@@ -32,15 +36,18 @@
 .sidebar-btn {
   width: 100%;
   justify-content: flex-start;
+  color: #222; /* Default dark color for buttons */
 }
 
 .sidebar-btn.active,
 .sidebar-btn:hover {
-  color: #d6bcfa !important;
+  color: #8047d0 !important; /* Highlight */
 }
 
 .dashboard-main {
   flex: 1;
   padding: 24px 24px 60px;
   overflow-y: auto;
+  background: #f5f6fa;
+  color: #111; /* Ensure dark text in main content */
 }

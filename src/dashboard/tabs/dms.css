@@ -1,21 +1,55 @@
-/* Black text on buttons */
+/* Buttons - black text */
 .btn, .btn--primary, .btn--danger, .btn--ghost {
   color: #000 !important;
 }
 
+/* Title */
 .dm-title {
   margin-bottom: 16px;
   font-size: 1.8rem;
   font-weight: 700;
+  color: #222;
 }
 
+/* ===== 3-way Tabs (Toggle) ===== */
+.dm-tabs {
+  display: inline-flex;
+  background: rgba(0, 0, 0, 0.05);  /* softer background */
+  backdrop-filter: blur(8px);
+  border-radius: 9999px;
+  padding: 4px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.dm-tab {
+  border: none;
+  background: transparent;
+  color: #333;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease, color 0.3s ease;
+}
+.dm-tab:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: #111;
+}
+.dm-tab.active {
+  background: #babaff; /* lavender subtle tone */
+  color: #111;
+  transform: translateY(-1px);
+}
+
+/* ===== Layout ===== */
 .dm-container {
   display: flex;
   gap: 16px;
   min-height: 500px;
 }
 
-/* Contacts list */
+/* Contacts */
 .dm-contacts {
   width: 280px;
   display: flex;
@@ -33,20 +67,26 @@
   text-align: left;
   border: none;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(4px);
   cursor: pointer;
-  transition: transform 0.2s, background 0.2s;
+  transition: transform 0.25s ease, background 0.25s ease;
 }
 .dm-contact:hover {
   transform: translateY(-3px);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.08);
 }
 .dm-contact.active {
-  box-shadow: 0 0 12px rgba(127, 90, 240, 0.6);
+  background: rgba(127, 90, 240, 0.12);
+  box-shadow: 0 0 10px rgba(127, 90, 240, 0.3);
 }
 
-/* Avatar with status */
+.dm-empty {
+  opacity: .6;
+  font-size: .9rem;
+  padding: 12px;
+}
+
 .dm-avatar-wrapper {
   position: relative;
 }
@@ -71,10 +111,10 @@
 .status-dot.offline {
   background: #ccc;
 }
-
 .dm-last-msg {
   font-size: 0.85rem;
   opacity: 0.7;
+  color: #444;
 }
 
 /* Chat window */
@@ -83,23 +123,22 @@
   display: flex;
   flex-direction: column;
   padding: 16px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.05);
   border-radius: 16px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
 }
-
 .dm-placeholder {
   margin: auto;
   opacity: 0.6;
   font-size: 1.1rem;
 }
-
 .dm-header {
   margin-bottom: 12px;
   font-weight: 700;
   font-size: 1.1rem;
   padding-bottom: 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  color: #222;
 }
 
 /* Messages */
@@ -115,57 +154,38 @@
   max-width: 70%;
   padding: 8px 12px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff;
+  background: rgba(0, 0, 0, 0.06);
+  color: #000;
   animation: fadeInUp 0.25s ease-in-out;
 }
 .dm-bubble.from-you {
   align-self: flex-end;
-  background: rgba(127, 90, 240, 0.6);
+  background: rgba(127, 90, 240, 0.18);
+  color: #000;
 }
 
 /* Input */
+.dm-input-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
 .dm-input {
   flex: 1;
   padding: 12px 14px;
   border-radius: 20px;
-  border: 1px solid #7f5af0; /* purple border for better visibility */
-  background: #fff; /* white bg */
-  color: #222; /* dark text */
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #222;
   outline: none;
   font-size: 1rem;
+  transition: box-shadow 0.2s ease;
 }
-
+.dm-input:focus {
+  box-shadow: 0 0 6px rgba(127, 90, 240, 0.3);
+}
 .dm-input::placeholder {
   color: #888;
-}
-
-.btn--primary {
-  background-color: #7f5af0;
-  color: #000; /* black text inside button */
-  font-weight: 600;
-  padding: 12px 20px;
-  border-radius: 12px;
-  cursor: pointer;
-  border: none;
-  transition: background-color 0.3s ease;
-}
-
-.btn--primary:hover {
-  background-color: #a179f7;
-}
-.dm-send-btn {
-  margin-left: 12px;
-  background: #7f5af0;
-  color: #000; /* black text */
-  padding: 10px 16px;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.dm-send-btn:hover {
-  background: #a179f7;
 }
 
 /* Animations */

@@ -1,43 +1,87 @@
 import React, { useState } from "react";
 import "./dms.css";
 
-const chatsList = [
-  { id: 1, name: "Alice", avatar: "https://randomuser.me/api/portraits/women/21.jpg", lastMessage: "Hey! Are you coming to the study group?", status: "online" },
-  { id: 2, name: "Michael", avatar: "https://randomuser.me/api/portraits/men/42.jpg", lastMessage: "Don't forget the project deadline!", status: "offline" },
-  { id: 3, name: "Sophia", avatar: "https://randomuser.me/api/portraits/women/45.jpg", lastMessage: "Let's grab coffee later.", status: "online" },
-  { id: 4, name: "Noah", avatar: "https://randomuser.me/api/portraits/men/70.jpg", lastMessage: "Sending the slides!", status: "online" },
-  { id: 5, name: "Emma", avatar: "https://randomuser.me/api/portraits/women/36.jpg", lastMessage: "Can we meet tomorrow?", status: "offline" },
-  { id: 6, name: "Liam", avatar: "https://randomuser.me/api/portraits/men/50.jpg", lastMessage: "Game night on Friday?", status: "online" },
-  { id: 7, name: "Olivia", avatar: "https://randomuser.me/api/portraits/women/12.jpg", lastMessage: "I just sent you the notes.", status: "online" },
+const MODES = {
+  REGULAR: "regular",
+  MARKETPLACE: "marketplace",
+  DATING: "dating",
+};
+
+/* ---------- CHAT LISTS (left column) ---------- */
+const chatsRegular = [
+  { id: 1, name: "Alice",   avatar: "https://randomuser.me/api/portraits/women/21.jpg", lastMessage: "Hey! Are you coming to the study group?", status: "online" },
+  { id: 2, name: "Michael", avatar: "https://randomuser.me/api/portraits/men/42.jpg",   lastMessage: "Don't forget the project deadline!",       status: "offline" },
+  { id: 3, name: "Sophia",  avatar: "https://randomuser.me/api/portraits/women/45.jpg", lastMessage: "Let's grab coffee later.",                status: "online" },
+  { id: 4, name: "Noah",    avatar: "https://randomuser.me/api/portraits/men/70.jpg",   lastMessage: "Sending the slides!",                     status: "online" },
 ];
 
-export default function DMs() {
-  const [selected, setSelected] = useState(null);
-  const [messages, setMessages] = useState({
+const chatsMarketplace = [
+  { id: 101, name: "Textbook Buyer",   avatar: "https://randomuser.me/api/portraits/men/12.jpg",  lastMessage: "Is the Calculus book still available?", status: "online" },
+  { id: 102, name: "Chair Seller",     avatar: "https://randomuser.me/api/portraits/women/19.jpg",lastMessage: "Can you pick it up tomorrow?",          status: "offline" },
+  { id: 103, name: "Fridge Buyer",     avatar: "https://randomuser.me/api/portraits/men/6.jpg",   lastMessage: "What's your best price?",               status: "online" },
+];
+
+const chatsDating = [
+  { id: 201, name: "Emily",   avatar: "https://randomuser.me/api/portraits/women/68.jpg", lastMessage: "Nice matching with you! 😊", status: "online" },
+  { id: 202, name: "Sophia",  avatar: "https://randomuser.me/api/portraits/women/40.jpg", lastMessage: "Coffee this week?",        status: "online"  },
+  { id: 203, name: "Noah",    avatar: "https://randomuser.me/api/portraits/men/70.jpg",   lastMessage: "Hiking plan this weekend?",status: "offline" },
+];
+
+/* ---------- INITIAL MESSAGES (right column) ---------- */
+const initialMessages = {
+  [MODES.REGULAR]: {
     1: [
       { from: "Alice", text: "Hey! Are you coming to the study group?" },
-      { from: "You", text: "Yes, I’ll be there!" },
-      { from: "Alice", text: "Great! Don’t forget to bring your laptop." },
+      { from: "You",   text: "Yes, I’ll be there!" },
     ],
-    2: [
-      { from: "Michael", text: "Don't forget the project deadline!" },
-      { from: "You", text: "Thanks for the reminder. I'm almost done." },
-      { from: "Michael", text: "Awesome, let me know if you want to review it together." },
+  },
+  [MODES.MARKETPLACE]: {
+    101: [
+      { from: "Textbook Buyer", text: "Is the Calculus book still available?" },
+      { from: "You",            text: "Yep! In great condition." },
+      { from: "Textbook Buyer", text: "Awesome, can you do $25?" },
     ],
-    3: [
-      { from: "Sophia", text: "Let's grab coffee later." },
-      { from: "You", text: "Sounds good! What time?" },
-      { from: "Sophia", text: "How about 4 PM at the campus cafe?" },
+  },
+  [MODES.DATING]: {
+    201: [
+      { from: "Emily", text: "Nice matching with you! 😊" },
+      { from: "You",   text: "Likewise, Emily!" },
+      { from: "Emily", text: "What are you studying?" },
+      { from: "You",   text: "CS! You?" },
     ],
-  });
+  },
+};
+
+export default function DMs() {
+  const [activeMode, setActiveMode] = useState(MODES.REGULAR);
+  const [selected, setSelected] = useState(null); // { id, name }
+  const [messages, setMessages] = useState(initialMessages);
   const [input, setInput] = useState("");
 
-  const handleOpen = (id, name, lastMessage) => {
-    setSelected({ id, name });
-    if (!messages[id]) {
+  const chatsMap = {
+    [MODES.REGULAR]: chatsRegular,
+    [MODES.MARKETPLACE]: chatsMarketplace,
+    [MODES.DATING]: chatsDating,
+  };
+
+  const modeLabel = {
+    [MODES.REGULAR]: "Direct Messages",
+    [MODES.MARKETPLACE]: "Marketplace Messages",
+    [MODES.DATING]: "Dating Messages",
+  };
+
+  const currentChats = chatsMap[activeMode];
+
+  const handleOpen = (chat) => {
+    setSelected({ id: chat.id, name: chat.name });
+    // lazy init thread if doesn't exist
+    if (!messages[activeMode]?.[chat.id]) {
       setMessages((m) => ({
         ...m,
-        [id]: [{ from: name, text: lastMessage }],
+        [activeMode]: {
+          ...m[activeMode],
+          [chat.id]: [{ from: chat.name, text: chat.lastMessage }],
+        },
       }));
     }
   };
@@ -45,47 +89,92 @@ export default function DMs() {
   const sendMessage = (e) => {
     e.preventDefault();
     if (!input.trim() || !selected) return;
+
     setMessages((m) => ({
       ...m,
-      [selected.id]: [...(m[selected.id] || []), { from: "You", text: input }],
+      [activeMode]: {
+        ...m[activeMode],
+        [selected.id]: [
+          ...(m[activeMode]?.[selected.id] || []),
+          { from: "You", text: input },
+        ],
+      },
     }));
     setInput("");
   };
 
+  // reset selected chat when switching modes
+  const switchMode = (mode) => {
+    setActiveMode(mode);
+    setSelected(null);
+    setInput("");
+  };
+
+  const activeThread =
+    (selected && messages[activeMode]?.[selected.id]) || [];
+
   return (
     <section className="section-glass">
-      <h2 className="dm-title">Direct Messages</h2>
+      <h2 className="dm-title">{modeLabel[activeMode]}</h2>
+
+      {/* Top 3-way toggle */}
+      <div className="dm-tabs">
+        <button
+          className={`dm-tab ${activeMode === MODES.REGULAR ? "active" : ""}`}
+          onClick={() => switchMode(MODES.REGULAR)}
+        >
+          DMs
+        </button>
+        <button
+          className={`dm-tab ${activeMode === MODES.MARKETPLACE ? "active" : ""}`}
+          onClick={() => switchMode(MODES.MARKETPLACE)}
+        >
+          Marketplace
+        </button>
+        <button
+          className={`dm-tab ${activeMode === MODES.DATING ? "active" : ""}`}
+          onClick={() => switchMode(MODES.DATING)}
+        >
+          Dating
+        </button>
+      </div>
 
       <div className="dm-container">
+        {/* Contacts */}
         <aside className="dm-contacts">
-          {chatsList.map((c) => (
-            <button
-              key={c.id}
-              onClick={() => handleOpen(c.id, c.name, c.lastMessage)}
-              className={`dm-contact ${selected?.id === c.id ? "active" : ""}`}
-            >
-              <div className="dm-avatar-wrapper">
-                <img src={c.avatar} alt={c.name} className="dm-avatar" />
-                <span className={`status-dot ${c.status}`}></span>
-              </div>
-              <div className="dm-info">
-                <strong>{c.name}</strong>
-                <div className="dm-last-msg">{c.lastMessage}</div>
-              </div>
-            </button>
-          ))}
+          {currentChats.map((c) => (
+          <button
+            key={c.id}
+            onClick={() => handleOpen(c)}
+            className={`dm-contact ${selected?.id === c.id ? "active" : ""}`}
+          >
+            <div className="dm-avatar-wrapper">
+              <img src={c.avatar} alt={c.name} className="dm-avatar" />
+              <span className={`status-dot ${c.status}`}></span>
+            </div>
+            <div className="dm-info">
+              <strong>{c.name}</strong>
+              <div className="dm-last-msg">{c.lastMessage}</div>
+            </div>
+          </button>
+        ))}
+        {currentChats.length === 0 && (
+          <div className="dm-empty">No conversations here yet.</div>
+        )}
         </aside>
 
+        {/* Chat Window */}
         <div className="dm-chat-window">
           {!selected ? (
-            <div className="dm-placeholder">
-              Select a chat to start messaging
-            </div>
+            <div className="dm-placeholder">Select a chat to start messaging</div>
           ) : (
             <div className="fade-in">
-              <header className="dm-header">Chat with {selected.name}</header>
+              <header className="dm-header">
+                Chat with {selected.name}
+              </header>
+
               <div className="dm-messages">
-                {(messages[selected.id] || []).map((m, i) => (
+                {activeThread.map((m, i) => (
                   <div
                     key={i}
                     className={`dm-bubble ${
@@ -104,7 +193,6 @@ export default function DMs() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   className="dm-input"
-                  autoFocus
                 />
                 <button className="btn btn--primary" type="submit">
                   📩 Send

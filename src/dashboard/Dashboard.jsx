@@ -1,12 +1,16 @@
 import React, { useState } from "react";
+
 import Home from "./tabs/Home";
 import Search from "./tabs/Search";
 import Marketplace from "./tabs/Marketplace";
 import Dating from "./tabs/Dating";
 import DMs from "./tabs/DMs";
 import Profile from "./tabs/Profile";
+import EventsCalendar from "./tabs/EventsCalendar";
 
-export default function Dashboard({ userEmail, onLogout, darkMode }) {
+import Logo from "../components/Logo"; // pretty CampusLink logo
+
+export default function Dashboard({ userEmail, onLogout }) {
   const [activeTab, setActiveTab] = useState("home");
 
   const renderTab = () => {
@@ -21,6 +25,8 @@ export default function Dashboard({ userEmail, onLogout, darkMode }) {
         return <Dating />;
       case "dms":
         return <DMs />;
+      case "events":
+        return <EventsCalendar />; // <- new tab
       case "profile":
         return <Profile userEmail={userEmail} />;
       default:
@@ -29,42 +35,71 @@ export default function Dashboard({ userEmail, onLogout, darkMode }) {
   };
 
   return (
-    <div className={`dashboard-container ${darkMode ? "dark" : ""}`}>
+    <div className="dashboard-container">
       <aside className="sidebar float-card">
-        <div className="brand">Campus Link</div>
+        <div className="brand" style={{ padding: "8px 0 18px" }}>
+          <Logo />
+        </div>
+
         <nav className="side-links">
           <button
-            className={`btn btn--ghost sidebar-btn ${activeTab === "home" ? "active" : ""}`}
+            className={`btn btn--ghost sidebar-btn ${
+              activeTab === "home" ? "active" : ""
+            }`}
             onClick={() => setActiveTab("home")}
           >
             🏠 Home
           </button>
+
           <button
-            className={`btn btn--ghost sidebar-btn ${activeTab === "search" ? "active" : ""}`}
+            className={`btn btn--ghost sidebar-btn ${
+              activeTab === "search" ? "active" : ""
+            }`}
             onClick={() => setActiveTab("search")}
           >
-            🔍 Search
+          🔍 Search
           </button>
+
           <button
-            className={`btn btn--ghost sidebar-btn ${activeTab === "marketplace" ? "active" : ""}`}
+            className={`btn btn--ghost sidebar-btn ${
+              activeTab === "marketplace" ? "active" : ""
+            }`}
             onClick={() => setActiveTab("marketplace")}
           >
             🛒 Marketplace
           </button>
+
           <button
-            className={`btn btn--ghost sidebar-btn ${activeTab === "dating" ? "active" : ""}`}
+            className={`btn btn--ghost sidebar-btn ${
+              activeTab === "dating" ? "active" : ""
+            }`}
             onClick={() => setActiveTab("dating")}
           >
             ❤️ Dating
           </button>
+
           <button
-            className={`btn btn--ghost sidebar-btn ${activeTab === "dms" ? "active" : ""}`}
+            className={`btn btn--ghost sidebar-btn ${
+              activeTab === "dms" ? "active" : ""
+            }`}
             onClick={() => setActiveTab("dms")}
           >
             💬 DMs
           </button>
+
           <button
-            className={`btn btn--ghost sidebar-btn ${activeTab === "profile" ? "active" : ""}`}
+            className={`btn btn--ghost sidebar-btn ${
+              activeTab === "events" ? "active" : ""
+            }`}
+            onClick={() => setActiveTab("events")}
+          >
+            📅 Events Calendar
+          </button>
+
+          <button
+            className={`btn btn--ghost sidebar-btn ${
+              activeTab === "profile" ? "active" : ""
+            }`}
             onClick={() => setActiveTab("profile")}
           >
             👤 Profile
