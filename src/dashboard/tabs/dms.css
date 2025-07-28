@@ -1,0 +1,182 @@
+/* Black text on buttons */
+.btn, .btn--primary, .btn--danger, .btn--ghost {
+  color: #000 !important;
+}
+
+.dm-title {
+  margin-bottom: 16px;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.dm-container {
+  display: flex;
+  gap: 16px;
+  min-height: 500px;
+}
+
+/* Contacts list */
+.dm-contacts {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  max-height: 70vh;
+}
+
+.dm-contact {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  text-align: left;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+.dm-contact:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.2);
+}
+.dm-contact.active {
+  box-shadow: 0 0 12px rgba(127, 90, 240, 0.6);
+}
+
+/* Avatar with status */
+.dm-avatar-wrapper {
+  position: relative;
+}
+.dm-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.status-dot {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+.status-dot.online {
+  background: #4caf50;
+}
+.status-dot.offline {
+  background: #ccc;
+}
+
+.dm-last-msg {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+/* Chat window */
+.dm-chat-window {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.dm-placeholder {
+  margin: auto;
+  opacity: 0.6;
+  font-size: 1.1rem;
+}
+
+.dm-header {
+  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Messages */
+.dm-messages {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 6px;
+}
+.dm-bubble {
+  max-width: 70%;
+  padding: 8px 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  animation: fadeInUp 0.25s ease-in-out;
+}
+.dm-bubble.from-you {
+  align-self: flex-end;
+  background: rgba(127, 90, 240, 0.6);
+}
+
+/* Input */
+.dm-input {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 20px;
+  border: 1px solid #7f5af0; /* purple border for better visibility */
+  background: #fff; /* white bg */
+  color: #222; /* dark text */
+  outline: none;
+  font-size: 1rem;
+}
+
+.dm-input::placeholder {
+  color: #888;
+}
+
+.btn--primary {
+  background-color: #7f5af0;
+  color: #000; /* black text inside button */
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn--primary:hover {
+  background-color: #a179f7;
+}
+.dm-send-btn {
+  margin-left: 12px;
+  background: #7f5af0;
+  color: #000; /* black text */
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.dm-send-btn:hover {
+  background: #a179f7;
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.4s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

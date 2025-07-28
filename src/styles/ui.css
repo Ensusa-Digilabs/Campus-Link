@@ -1,0 +1,189 @@
+:root {
+  --accent: #7f5af0;
+  --accent-2: #2cb67d;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --text-dark: #0f1115;
+  --text-light: #eef2ff;
+  --glass-light: rgba(255, 255, 255, 0.2);
+  --glass-dark: rgba(30, 30, 45, 0.4);
+  --blur: 18px;
+  --rad: 20px;
+  --rad-pill: 9999px;
+  --shadow-pop: 0 18px 35px rgba(0, 0, 0, 0.2);
+  --shadow-pop-strong: 0 35px 70px rgba(0, 0, 0, 0.35);
+  --shadow-glow: 0 0 25px rgba(127, 90, 240, 0.35);
+  --transition: 0.28s cubic-bezier(.2,.8,.2,1);
+}
+
+body.dark {
+  --text: var(--text-light);
+  --glass: var(--glass-dark);
+}
+body:not(.dark) {
+  --text: var(--text-dark);
+  --glass: var(--glass-light);
+}
+
+/* Smoothen everything */
+* {
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition),
+    transform var(--transition),
+    opacity var(--transition);
+}
+
+/* Cards & sections */
+.section-glass {
+  background: var(--glass);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  border-radius: 28px;
+  padding: 24px;
+  box-shadow: var(--shadow-pop);
+  margin: 24px auto;
+  max-width: 1100px;
+}
+
+.float-card {
+  background: var(--glass);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  border-radius: var(--rad);
+  box-shadow: var(--shadow-pop);
+  border: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+  transform: translateY(0) translateZ(0);
+  will-change: transform, box-shadow;
+}
+.float-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: var(--shadow-pop-strong), var(--shadow-glow);
+}
+.float-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(140deg, rgba(255,255,255,0.12), rgba(255,255,255,0) 60%);
+  opacity: .7;
+  pointer-events: none;
+}
+
+/* Buttons */
+.btn {
+  --btn-bg: var(--glass);
+  --btn-fg: var(--accent);
+  --btn-shadow: rgba(127, 90, 240, 0.4);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+
+  padding: 0.85rem 1.4rem;
+  border-radius: var(--rad-pill);
+  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 22px var(--btn-shadow);
+  text-decoration: none;
+  line-height: 1;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 16px 40px var(--btn-shadow);
+}
+.btn:active {
+  transform: translateY(0) scale(.99);
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(120deg, rgba(255,255,255,.24), rgba(255,255,255,.05) 40%, rgba(255,255,255,0) 80%);
+  opacity: .25;
+  transition: opacity var(--transition);
+  z-index: -1;
+}
+.btn:hover::before {
+  opacity: .45;
+}
+
+.btn--primary {
+  --btn-bg: rgba(127, 90, 240, 0.18);
+  --btn-fg: #fff;
+  border: 1px solid rgba(127,90,240,.25);
+  color: #fff;
+  backdrop-filter: blur(calc(var(--blur) * 0.6));
+}
+.btn--primary:hover {
+  background: rgba(127, 90, 240, 0.32);
+}
+.btn--danger {
+  --btn-bg: rgba(239, 68, 68, 0.18);
+  --btn-fg: #fff;
+  border: 1px solid rgba(239,68,68,.25);
+  box-shadow: 0 10px 26px rgba(239, 68, 68, 0.35);
+}
+.btn--danger:hover {
+  background: rgba(239, 68, 68, 0.32);
+}
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: inherit;
+  box-shadow: none;
+  border: 1px solid transparent;
+}
+.btn--ghost:hover {
+  background: rgba(255,255,255,.08);
+}
+
+.btn--icon {
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border-radius: 16px;
+  font-size: 1.25rem;
+}
+.btn-group {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+}
+
+/* Super aesthetic logout */
+.logout-cta {
+  background: linear-gradient(135deg, rgba(239,68,68,.9), rgba(244,114,182,.9));
+  color: #fff;
+  border: none;
+  padding: 0.95rem 1.6rem;
+  border-radius: var(--rad-pill);
+  box-shadow: 0 18px 40px rgba(239, 68, 68, 0.4);
+  font-weight: 800;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.logout-cta:hover {
+  box-shadow: 0 28px 60px rgba(239, 68, 68, 0.6);
+  transform: translateY(-2px) scale(1.03) rotate(-0.4deg);
+}
+
+/* Tab fade */
+.dashboard-main > * {
+  animation: fadeIn .45s ease forwards;
+}
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(10px);}
+  to {opacity: 1; transform: translateY(0);}
+}

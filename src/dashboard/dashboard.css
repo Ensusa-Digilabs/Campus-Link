@@ -1,0 +1,46 @@
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 260px;
+  padding: 28px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  backdrop-filter: blur(14px);
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+
+.brand {
+  font-weight: 900;
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+  color: #000;
+  letter-spacing: .4px;
+}
+
+.side-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.sidebar-btn {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.sidebar-btn.active,
+.sidebar-btn:hover {
+  color: #d6bcfa !important;
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 24px 24px 60px;
+  overflow-y: auto;
+}

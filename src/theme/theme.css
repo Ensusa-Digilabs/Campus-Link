@@ -1,0 +1,50 @@
+:root {
+  --bg: #f5f7fb;
+  --bg-panel: #ffffff;
+  --bg-elevated: #ffffff;
+  --text: #1f2937;
+  --text-muted: #6b7280;
+  --border: rgba(0,0,0,0.08);
+  --brand: #4a90e2;
+  --brand-hover: #357abd;
+  --error: #d64541;
+  --like: #ff3366;
+  --tag-bg: #e3eaf9;
+  --shadow: 0 1px 4px rgba(0,0,0,0.06);
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 200ms ease;
+  --font: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html[data-theme="dark"] {
+  --bg: #0f172a;
+  --bg-panel: #1e293b;
+  --bg-elevated: #243244;
+  --text: #f8fafc;
+  --text-muted: #cbd5e1;
+  --border: rgba(255,255,255,0.08);
+  --brand: #7f5fcf;
+  --brand-hover: #a078f0;
+  --error: #ff6b6b;
+  --like: #ff4d88;
+  --tag-bg: #2b3b52;
+  --shadow: 0 1px 6px rgba(0,0,0,0.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  transition: background var(--transition), color var(--transition);
+}
+
+button {
+  font-family: inherit;
+}
