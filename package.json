@@ -2,12 +2,13 @@
   "name": "campus-link-login",
   "version": "1.0.0",
   "scripts": {
+    "build": "vite build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
-"homepage": "https://Ensusa-Digilabs.github.io/Campus-Link/",
-"dependencies": {
-  "calendar": "^0.1.1",
+  "homepage": "https://Ensusa-Digilabs.github.io/Campus-Link/",
+  "dependencies": {
+    "calendar": "^0.1.1",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.526.0",
     "react": "^18.3.1",
