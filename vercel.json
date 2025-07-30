@@ -1,0 +1,10 @@
+{
+  "build": {
+    "env": {
+      "NODE_ENV": "development"
+    }
+  },
+  "installCommand": "npm install --include=dev",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist"
+}
