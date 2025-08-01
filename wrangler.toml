@@ -1,0 +1,9 @@
+name = "react-vite-site"
+compatibility_date = "2025-08-01"
+
+[site]
+bucket = "./dist"
+entry-point = "."
+
+# Optional: if you want to use custom domain later
+# routes = ["yourdomain.com/*"]

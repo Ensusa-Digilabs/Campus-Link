@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// Replace 'your-repo-name' with the actual repo name
 export default defineConfig({
-  base: '/Campus-Link/',
+  base: '/', // Root path
   plugins: [react()],
 });
+// This configuration sets up a Vite project with React support and specifies the base path for the application.
