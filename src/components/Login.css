@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Billabong&display=swap');
+
+.login-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertically center */
+  align-items: center; /* horizontally center */
+  background: #f0f2f8; /* light background */
+  padding: 20px;
+  color: #000;
+}
+
+.login-logo {
+  font-family: 'Billabong', cursive;
+  font-size: 4rem;
+  margin-bottom: 24px;
+  user-select: none;
+  text-align: center;
+}
+
+.login-logo .campus {
+  color: #7f5af0; /* purple */
+}
+
+.login-logo .link {
+  color: #ff6f91; /* pinkish */
+}
+
+.login-form {
+  background: #fff;
+  padding: 36px 32px;
+  border-radius: 20px;
+  width: 340px;
+  box-shadow: 0 8px 24px rgba(127, 90, 240, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 12px;
+  color: #222;
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
+.login-input {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1.5px solid #ddd;
+  font-size: 1rem;
+  outline: none;
+  color: #222;
+  transition: border-color 0.3s ease;
+}
+
+.login-input::placeholder {
+  color: #aaa;
+}
+
+.login-input:focus {
+  border-color: #7f5af0;
+  box-shadow: 0 0 8px rgba(127, 90, 240, 0.3);
+}
+
+.btn--primary {
+  background-color: #7f5af0;
+  color: #fff;
+  font-weight: 700;
+  padding: 14px;
+  border-radius: 16px;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn--primary:hover {
+  background-color: #a179f7;
+}
+.btn--primary:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+.login-error {
+  color: #ff6f91; /* pinkish */
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 12px;
+}
+.login-success {
+  color: #28a745; /* green */
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 12px;
+}
+.login-footer {
+  margin-top: 24px;
+  text-align: center;
+}
+.login-footer a {
+  color: #7f5af0; /* purple */
+  text-decoration: none;
+  font-weight: 500;
+}
+.login-footer a:hover {
+  text-decoration: underline;
+}
+.login-footer a:visited {
+  color: #7f5af0; /* purple */
+}
+.login-footer a:active {
+  color: #5a3bb5; /* darker purple */
+}
+.login-footer a:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(127, 90, 240, 0.5);
+  color: #7f5af0; /* purple */
+}
+.login-footer a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(127, 90, 240, 0.5);
+  color: #7f5af0; /* purple */
+}
+.login-footer a:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+  color: #7f5af0; /* purple */
+}
+.login-footer a:focus:not(:focus-visible) .link {
+  color: #7f5af0; /* purple */
+}
+.login-footer a:focus:not(:focus-visible) .campus {
+  color: #7f5af0; /* purple */
+}
