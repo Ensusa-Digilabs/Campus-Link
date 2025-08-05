@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import Logo from './Logo';
+import './Login.css';
+
 
 function Login({ onLoginSuccess }) {
   const [email, setEmail] = useState('');
@@ -8,8 +11,6 @@ function Login({ onLoginSuccess }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // TODO: Replace with real authentication API call
     if (email && password) {
       onLoginSuccess(email);
       navigate('/dashboard');
@@ -20,6 +21,10 @@ function Login({ onLoginSuccess }) {
 
   return (
     <div className="login-container">
+      <div className="login-logo">
+        <Logo />
+      </div>
+
       <form className="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
         <input
@@ -41,6 +46,7 @@ function Login({ onLoginSuccess }) {
         <button className="btn--primary" type="submit">
           Login
         </button>
+
         <div style={{ textAlign: 'center', marginTop: '10px' }}>
           <Link to="/signup" style={{ marginRight: '10px' }}>
             Create account

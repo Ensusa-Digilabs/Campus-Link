@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import Logo from './Logo';
+import './Signup.css';
+
 
 function Signup({ onSignupSuccess }) {
   const [email, setEmail] = useState('');
@@ -19,7 +22,6 @@ function Signup({ onSignupSuccess }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!validateEmail()) return;
     if (password !== confirmPassword) {
       setError('Passwords do not match');
@@ -30,15 +32,17 @@ function Signup({ onSignupSuccess }) {
       return;
     }
 
-    // TODO: Replace with real signup API call
     alert('Signup successful!');
-
     onSignupSuccess(email);
     navigate('/dashboard');
   };
 
   return (
     <div className="login-container">
+      <div className="login-logo">
+        <Logo />
+      </div>
+
       <form className="login-form" onSubmit={handleSubmit}>
         <h2>Sign Up</h2>
         <input

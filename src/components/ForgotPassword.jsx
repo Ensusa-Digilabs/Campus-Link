@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Logo from './Logo';
 import './ForgotPassword.css';
+
 
 function ForgotPassword() {
   const handleReset = (e) => {
@@ -11,7 +13,7 @@ function ForgotPassword() {
   return (
     <div className="login-container">
       <div className="login-logo">
-        <span className="campus">Campus</span><span className="link">Link</span>
+        <Logo />
       </div>
 
       <form className="login-form" onSubmit={handleReset}>
