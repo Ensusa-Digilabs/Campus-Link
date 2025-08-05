@@ -105,33 +105,4 @@
   text-decoration: none;
   font-weight: 500;
 }
-.login-footer a:hover {
-  text-decoration: underline;
-}
-.login-footer a:visited {
-  color: #7f5af0; /* purple */
-}
-.login-footer a:active {
-  color: #5a3bb5; /* darker purple */
-}
-.login-footer a:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(127, 90, 240, 0.5);
-  color: #7f5af0; /* purple */
-}
-.login-footer a:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(127, 90, 240, 0.5);
-  color: #7f5af0; /* purple */
-}
-.login-footer a:focus:not(:focus-visible) {
-  outline: none;
-  box-shadow: none;
-  color: #7f5af0; /* purple */
-}
-.login-footer a:focus:not(:focus-visible) .link {
-  color: #7f5af0; /* purple */
-}
-.login-footer a:focus:not(:focus-visible) .campus {
-  color: #7f5af0; /* purple */
-}
+
